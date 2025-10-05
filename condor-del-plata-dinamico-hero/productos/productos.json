@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Notebook Philco N14 (Nueva)",
+    "price": "ARS 309.000",
+    "img": "productos/philco-n14.jpg",
+    "specs": [
+      "14\" HD",
+      "Intel Celeron N4020",
+      "128GB SSD",
+      "4GB RAM",
+      "Con garantía de fábrica"
+    ],
+    "stock": "En stock"
+  },
+  {
+    "name": "Cámara IMOU Cruiser SE+ 3MP Wi‑Fi (Domo)",
+    "price": "Consultar",
+    "img": "productos/imou-cruiser-se-plus.jpg",
+    "specs": [
+      "2K/3MP",
+      "Detección humana",
+      "Audio bidireccional",
+      "Seguimiento inteligente",
+      "Instalación opcional"
+    ],
+    "stock": "A pedido"
+  },
+  {
+    "name": "Lenovo Ideapad 14”",
+    "price": "ARS 185.000",
+    "img": "productos/lenovo-ideapad.jpg",
+    "specs": [
+      "14\"",
+      "Intel Pentium Silver N5030",
+      "Intel UHD 605",
+      "256GB SSD",
+      "4GB RAM"
+    ],
+    "stock": "Usado - Excelente"
+  },
+  {
+    "name": "Alarma Hikvision AX Pro (Kit)",
+    "price": "Consultar instalación",
+    "img": "productos/hikvision-ax-pro.jpg",
+    "specs": [
+      "Central + sensores",
+      "Conectividad inalámbrica",
+      "App móvil"
+    ],
+    "stock": "A pedido"
+  },
+  {
+    "name": "HP 250 G7 16”",
+    "price": "ARS 290.000",
+    "img": "productos/hp-250-g7.jpg",
+    "specs": [
+      "16\" con teclado numérico",
+      "Intel Core i3-7020U",
+      "Intel UHD Graphics",
+      "256GB SSD + 1TB",
+      "8GB RAM",
+      "Windows 11 Pro 24H2"
+    ],
+    "stock": "Usado - Excelente"
+  },
+  {
+    "name": "Router/Repetidor GLC Alpha (4 Antenas 5dBi)",
+    "price": "Consultar",
+    "img": "productos/router-glc-alpha.jpg",
+    "specs": [
+      "4 antenas 5dBi",
+      "Repeater/Router",
+      "Wi‑Fi"
+    ],
+    "stock": "En stock"
+  },
+  {
+    "name": "DELL Vostro 3400 14”",
+    "price": "ARS 320.000",
+    "img": "productos/dell-vostro-3400.jpg",
+    "specs": [
+      "14\"",
+      "Intel Core i3‑1115G4",
+      "Intel UHD Graphics",
+      "256GB SSD + 1TB",
+      "8GB RAM"
+    ],
+    "stock": "Usado - Excelente"
+  },
+  {
+    "name": "Notebook Acer Aspire 3 14”",
+    "price": "ARS 285.000",
+    "img": "productos/acer-aspire-3.jpg",
+    "specs": [
+      "14\"",
+      "AMD Ryzen 3 3250U",
+      "Radeon Vega 3",
+      "256GB SSD",
+      "8GB RAM DDR4"
+    ],
+    "stock": "Usado - Excelente"
+  }
+]

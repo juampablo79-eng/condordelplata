@@ -1,0 +1,156 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cóndor del Plata — Tecnología y Computación</title>
+  <meta name="description" content="Venta de notebooks, componentes, periféricos, redes y servicio técnico en Mendoza." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    html, body { background: #fafafa; color:#111827; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .shadow-soft { box-shadow: 0 12px 30px rgba(0,0,0,0.10); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const primaryColor = "#0072CE";
+
+    function useProducts() {
+      const [items, setItems] = React.useState([]);
+      React.useEffect(() => {
+        fetch('productos/productos.json?_=' + Date.now()).then(r => r.json()).then(setItems);
+      }, []);
+      return items;
+    }
+
+    function App() {
+      const items = useProducts();
+      return (
+        <div className="min-h-screen">
+          <header className="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-neutral-200">
+            <div className="container px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+              <a href="#home" className="flex items-center gap-3">
+                <img src="logo-condor-del-plata.png" alt="Cóndor del Plata" className="h-10 w-auto" style={{maxHeight:40}} />
+              </a>
+              <nav className="hidden md:flex items-center gap-6 text-sm">
+                <a href="#servicios" className="hover:opacity-70">Servicio técnico</a>
+                <a href="#productos" className="hover:opacity-70">Catálogo</a>
+                <a href="#contacto" className="hover:opacity-70">Contacto</a>
+              </nav>
+              <a href="https://wa.me/5492616968040" target="_blank" className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium text-white hover:opacity-90" style={{ backgroundColor: primaryColor }}>WhatsApp</a>
+            </div>
+          </header>
+
+          <section id="home" className="relative overflow-hidden">
+            <div className="container px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+              <div className="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                  <span className="inline-block text-xs font-medium tracking-widest uppercase text-neutral-500">Tecnología, insumos y repuestos de computación</span>
+                  <h1 className="mt-3 text-4xl sm:text-5xl font-extrabold">
+                    Todo para tu PC en <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, ${primaryColor}, #005a9e)` }}>un solo lugar</span>
+                  </h1>
+                  <p className="mt-4 text-neutral-600 max-w-prose">Venta de notebooks, componentes, periféricos, redes y servicio técnico. Retiro en Mendoza y envíos a todo el país.</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a href="#productos" className="rounded-2xl px-5 py-3 text-white font-medium hover:opacity-90" style={{ backgroundColor: primaryColor }}>Ver catálogo</a>
+                    <a href="#servicios" className="rounded-2xl px-5 py-3 border font-medium" style={{ borderColor: primaryColor, color: primaryColor }}>Servicio técnico</a>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="rounded-3xl overflow-hidden shadow-soft border border-neutral-200 bg-white">
+                    <img src="hero.jpg" alt="Servicio técnico y computación" className="w-full h-auto object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="servicios" className="py-16 border-t border-neutral-200 bg-white">
+            <div className="container px-4 sm:px-6 lg:px-8">
+              <div className="flex items-end justify-between gap-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold">Servicio técnico</h2>
+                  <p className="text-neutral-600 mt-2">Trabajo prolijo y garantía escrita. Pedí turno o retiro a domicilio (a coordinar).</p>
+                </div>
+                <a href="#contacto" className="hidden sm:inline-block rounded-xl px-4 py-2 border hover:bg-neutral-50" style={{ borderColor: primaryColor, color: primaryColor }}>Solicitar info</a>
+              </div>
+            </div>
+          </section>
+
+          <section id="productos" className="py-16 border-t border-neutral-200">
+            <div className="container px-4 sm:px-6 lg:px-8">
+              <div className="flex items-end justify-between gap-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold">Catálogo</h2>
+                  <p className="text-neutral-600 mt-2">Precios orientativos. Consultá por stock, cuotas y otras marcas/modelos.</p>
+                </div>
+              </div>
+
+              <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {items.map((p, i) => (
+                  <article key={i} className="rounded-2xl border border-neutral-200 overflow-hidden bg-white">
+                    <img src={p.img} alt={p.name} className="h-48 w-full object-cover" />
+                    <div className="p-5">
+                      <h3 className="font-semibold">{p.name}</h3>
+                      <p className="text-sm text-neutral-500 mt-1">{p.price} · <span className="text-green-700">{p.stock}</span></p>
+                      {Array.isArray(p.specs) && p.specs.length > 0 && (
+                        <ul className="mt-3 text-sm list-disc pl-5 text-neutral-600">
+                          {p.specs.map((s, idx) => <li key={idx}>{s}</li>)}
+                        </ul>
+                      )}
+                      <div className="mt-4 flex gap-2">
+                        <a href={"https://wa.me/5492616968040?text=" + encodeURIComponent("Hola, me interesa " + p.name + " que vi en su web.")} target="_blank" className="rounded-xl px-4 py-2 text-white text-sm" style={{ backgroundColor: primaryColor }}>WhatsApp</a>
+                        <a href="#contacto" className="rounded-xl px-4 py-2 border text-sm" style={{ borderColor: primaryColor, color: primaryColor }}>Consultar</a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section id="contacto" className="py-16 border-t border-neutral-200">
+            <div className="container px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold">Contacto</h2>
+                <div className="mt-2 text-sm text-neutral-700">
+                  <p>Empresa informática orientada a la reparación de hardware, software y compra, venta y permuta de Notebooks, PCs, All in One, Netbooks.</p>
+                  <p>Contamos con laboratorio especializado en reparación de placas y microsoldaduras.</p>
+                  <p>Ofrecemos profesionalismo y seriedad.</p>
+                </div>
+                <div className="mt-6 text-sm text-neutral-600">
+                  <p><strong>Dirección:</strong> Yatay 3957, M5519 Mendoza, Argentina</p>
+                  <p><strong>Horario:</strong> Lun a Vie 9:00–18:00</p>
+                  <p><strong>Tel:</strong> 261 696 8040</p>
+                  <p><strong>Email:</strong> condor.delplatatech@gmail.com</p>
+                </div>
+              </div>
+              <iframe title="Mapa" className="w-full h-72 rounded-2xl border border-neutral-200" src="https://www.google.com/maps?q=Yatay+3957,+M5519+Mendoza,+Argentina&output=embed" loading="lazy"></iframe>
+            </div>
+          </section>
+
+          <footer className="border-t border-neutral-200 py-10 text-sm bg-white">
+            <div className="container px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+              <p>© {new Date().getFullYear()} Cóndor del Plata — Todos los derechos reservados.</p>
+              <div className="flex gap-4">
+                <a className="hover:opacity-70" href="#">Términos</a>
+                <a className="hover:opacity-70" href="#">Privacidad</a>
+                <a className="hover:opacity-70" href="mailto:condor.delplatatech@gmail.com" style={{ color: primaryColor }}>Email</a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
